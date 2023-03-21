@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/user/preferences' => 'devise/registrations#edit', as: 'user_preferences'
   end
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
 
   resources :boards
   resources :pins
