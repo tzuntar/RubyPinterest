@@ -1,9 +1,50 @@
-<h1>New pin</h1>
+<%= form_with(model: @pin, class: 'container inner-form') do |form| %>
 
-<%= render "form", pin: @pin %>
+  <h1 class="mb-5 text-center">New Pin</h1>
 
-<br>
+  <% if @pin.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@pin.errors.count, "error") %> prevented this pin from being saved:</h2>
 
-<div>
-  <%= link_to "Back to pins", pins_path %>
-</div>
+      <ul>
+        <% @pin.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row form-group mb-3">
+    <div class="col-sm-3">
+      <p>Caption:</p>
+    </div>
+    <div class="col-sm-8">
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row form-group mb-3">
+    <div class="col-sm-3">
+      <p>Image Address:</p>
+    </div>
+    <div class="col-sm-8">
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row form-group mb-3">
+    <div class="col-sm-3">
+      <p>Description:</p>
+      <small>(optional)</small>
+    </div>
+    <div class="col-sm-8">
+      <%= form.text_area :description, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row form-group mb-5">
+    <div class="col-sm-12 text-center">
+      <%= form.submit value: 'Post Pin', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

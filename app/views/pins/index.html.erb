@@ -1,9 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<div id="pins" class="container">
+  <div class="row row-cols-auto">
+    <% @pins.each do |pin| %>
+      <div class="col">
+        <a class="neutral-link" href="<%= pin_path(pin) %>">
+          <div id="<%= dom_id pin %>" class="card card-narrow">
+            <img class="card-img-top" src="<%= pin.url %>" alt="<%= pin.title %>"/>
+          </div>
+        </a>
 
-<h1>Pins</h1>
-
-<div id="pins">
-  <%= render @pins %>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New pin", new_pin_path %>
