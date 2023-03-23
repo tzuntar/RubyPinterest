@@ -1,15 +1,39 @@
-<h1>Editing pin</h1>
+<%= back_button %>
+<h3 class="text-center">Edit Pin</h3>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-6">
+      <img class="card-img-top rounded" src="<%= @pin.url %>" alt="<%= @pin.title %>"/>
+    </div>
+    <div class="col-sm-6">
 
-<%= render "form", pin: @pin %>
+      <%= form_with(model: @pin, class: 'container') do |form| %>
+        <div class="row form-group mb-3">
+          <div class="col-sm-3">
+            <p>Caption:</p>
+          </div>
+          <div class="col-sm-9">
+            <%= form.text_field :title, class: 'form-control' %>
+          </div>
+        </div>
 
-<br>
+        <div class="row form-group mb-3">
+          <div class="col-sm-3">
+            <p>Description:</p>
+            <small>(optional)</small>
+          </div>
+          <div class="col-sm-9">
+            <%= form.text_area :description, class: 'form-control' %>
+          </div>
+        </div>
 
-<div>
-  <%= link_to "Show this pin", @pin %> |
-  <%= link_to "Back to pins", pins_path %>
+        <div class="row form-group mb-5">
+          <div class="col-sm-12">
+            <%= form.submit value: 'Save', class: 'btn btn-primary' %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
 </div>
-
-
-
-
-

@@ -39,6 +39,9 @@ gem "pg_search"
 # Devise-based authentication
 gem "devise"
 
+# Easier URL parsing
+gem "uri"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

@@ -1,13 +1,46 @@
-<%= link_to 'Back', :back %>
-<a class="neutral-link" href="<%= pin_path(@pin) %>">
-  <div id="<%= dom_id @pin %>" class="card card-narrow">
-    <img class="card-img-top" src="<%= @pin.url %>" alt="<%= @pin.title %>"/>
-    <div class="card-body">
-      <h5 class="card-title"><%= @pin.title %></h5>
-      <p class="card-text"><%= @pin.description %></p>
-      <a href="#" class="btn btn-primary">Save</a>
-      <a href="<%= edit_pin_path(@pin) %>" class="btn btn-outline-secondary">Edit</a>
-      <a href="<%= pin_path(@pin) %>" rel="nofollow" data-confirm="Are you sure?" data-method="delete" class="btn btn-outline-danger">Delete</a>
+<%= back_button %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <img class="card-img-top rounded" src="<%= @pin.url %>" alt="<%= @pin.title %>"/>
+    </div>
+    <div class="col-sm-6">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-10">
+            <div class="dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Manage
+              </a>
+              <ul class="dropdown-menu dropdown-menu-start">
+                <li><%= link_to 'Edit', edit_pin_path(@pin), class: 'dropdown-item' %></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><%= link_to 'Delete', pin_path(@pin), method: :delete, class: 'dropdown-item link-danger', data: { turbo_method: :delete } %></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <a href="#" class="btn btn-primary">Save</a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <small>From <a class="neutral-link" href="<%= @pin.url %>"><%= get_base_url @pin.url %></a></small>
+            <h1 class="card-title mt-3"><%= @pin.title %></h1>
+            <p class="card-text mt-3"><%= @pin.description %></p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
-</a>
+
+  <hr class="mt-4"/>
+
+  <h4 class="text-center">Similar to this</h4>
+
+</div>
