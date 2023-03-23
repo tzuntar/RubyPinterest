@@ -14,7 +14,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/new
   def new
-    @board = Board.new
+    @board = current_user.boards.build
   end
 
   # GET /boards/1/edit
@@ -23,8 +23,7 @@ class BoardsController < ApplicationController
 
   # POST /boards or /boards.json
   def create
-    @board = Board.new(board_params)
-    @board.user = current_user
+    @board = current_user.boards.build(board_params)
 
     respond_to do |format|
       if @board.save
