@@ -1,2 +1,19 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400;1,600;1,800&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+main {
+  padding: 20px 5%;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 600;
+}
+
+.inner-form {
+  padding: 20px 20%;
+}
