@@ -3,12 +3,7 @@
 <h1>Pins</h1>
 
 <div id="pins">
-  <% @pins.each do |pin| %>
-    <%= render pin %>
-    <p>
-      <%= link_to "Show this pin", pin %>
-    </p>
-  <% end %>
+  <%= render @pins %>
 </div>
 
 <%= link_to "New pin", new_pin_path %>

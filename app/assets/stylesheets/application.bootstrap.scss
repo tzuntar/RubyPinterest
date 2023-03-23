@@ -21,3 +21,8 @@ h1, h2, h3, h4, h5 {
 .card-narrow {
   width: 20rem;
 }
+
+.neutral-link, .neutral-link:hover, .neutral-link:visited, .neutral-link:active {
+  color: inherit;
+  text-decoration: inherit;
+}
