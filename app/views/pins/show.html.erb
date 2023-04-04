@@ -34,6 +34,9 @@
             <p class="card-text mt-3"><%= @pin.description %></p>
           </div>
         </div>
+        <div class="row">
+          <h4 class="mt-4">Comments</h4>
+        </div>
 
       </div>
     </div>
@@ -42,5 +45,17 @@
   <hr class="mt-4"/>
 
   <h4 class="text-center">Similar to this</h4>
+
+  <div class="row row-cols-auto">
+    <% @similar.each do |pin| %>
+      <div class="col mb-3 max-height">
+        <a class="neutral-link" href="<%= pin_path(pin) %>">
+          <div id="<%= dom_id pin %>" class="card card-narrow">
+            <img class="card-img-top rounded" src="<%= pin.url %>" alt="<%= pin.title %>"/>
+          </div>
+        </a>
+      </div>
+    <% end %>
+  </div>
 
 </div>
