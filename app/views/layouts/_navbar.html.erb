@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
+  <div class="container-fluid" >
     <%= link_to 'RubyPinterest', root_path, class: 'navbar-brand' %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,7 @@
           <%= link_to "New pin", new_pin_path, class: "nav-link #{ display_active_class(new_pin_path(@pin)) }"  %>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0 text-center">
+      <form class="form-inline my-2 my-lg-0 text-center" >
         <input class="form-control mr-sm-2" type="search" placeholder="Type here to search..." aria-label="Search">
       </form>
       <ul class="navbar-nav">
