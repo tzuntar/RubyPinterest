@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_23_072133) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_04_101140) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_072133) do
     t.index ["user_id"], name: "index_pins_on_user_id"
   end
 
+  create_table "pins_tags", id: false, force: :cascade do |t|
+    t.bigint "pin_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["pin_id", "tag_id"], name: "index_pins_tags_on_pin_id_and_tag_id"
+    t.index ["tag_id", "pin_id"], name: "index_pins_tags_on_tag_id_and_pin_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
@@ -51,4 +64,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_072133) do
   add_foreign_key "boards", "users"
   add_foreign_key "pins", "boards"
   add_foreign_key "pins", "users"
+  add_foreign_key "pins_tags", "pins"
+  add_foreign_key "pins_tags", "tags"
 end

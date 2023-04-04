@@ -20,12 +20,16 @@ class PinsController < ApplicationController
 
   # GET /pins/1/edit
   def edit
+    @tags_entry = @pin.tags.pluck(:name).join(', ')
   end
 
   # POST /pins or /pins.json
   def create
-    @pin = Pin.new(pin_params)
+    @pin = Pin.new(pin_params.except(:tags_entry))
     @pin.user = current_user
+    pin_params[:tags_entry].split(',').each do |tag|
+      @pin.tags.push(Tag.find_or_create_by(name: tag.strip))
+    end
 
     respond_to do |format|
       if @pin.save
@@ -40,8 +44,14 @@ class PinsController < ApplicationController
 
   # PATCH/PUT /pins/1 or /pins/1.json
   def update
+    #@pin.tags.destroy_all
+    @pin.tags = []
+    pin_params[:tags_entry].split(',').each do |tag|
+      @pin.tags.push(Tag.find_or_create_by(name: tag.strip))
+    end
+
     respond_to do |format|
-      if @pin.update(pin_params)
+      if @pin.update(pin_params.except(:tags_entry))
         format.html { redirect_to pin_url(@pin), notice: "Pin was successfully updated." }
         format.json { render :show, status: :ok, location: @pin }
       else
@@ -75,6 +85,6 @@ class PinsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pin_params
-      params.require(:pin).permit(:title, :url, :description)
+      params.require(:pin).permit(:title, :url, :description, :tags_entry)
     end
 end
