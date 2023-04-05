@@ -28,7 +28,7 @@ class PinsController < ApplicationController
     @pin = Pin.new(pin_params.except(:tags_entry))
     @pin.user = current_user
     pin_params[:tags_entry].split(',').each do |tag|
-      @pin.tags.push(Tag.find_or_create_by(name: tag.strip))
+      @pin.tags.push(Tag.find_or_create_by(name: tag.strip.downcase))
     end
 
     respond_to do |format|
@@ -47,7 +47,7 @@ class PinsController < ApplicationController
     #@pin.tags.destroy_all
     @pin.tags = []
     pin_params[:tags_entry].split(',').each do |tag|
-      @pin.tags.push(Tag.find_or_create_by(name: tag.strip))
+      @pin.tags.push(Tag.find_or_create_by(name: tag.strip.downcase))
     end
 
     respond_to do |format|

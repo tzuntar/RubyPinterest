@@ -1,0 +1,25 @@
+<%= back_button %>
+<h3 class="text-center">Search Results</h3>
+<div class="container mt-4">
+  <div class="row">
+    <% if @results[:pins] == nil and @results[:boards] == nil and @results[:users] == nil %>
+      <div class="text-center">
+        <h4>No Results</h4>
+        <p>Try rewording your query</p>
+      </div>
+    <% else %>
+      <% if @results[:pins] != nil and @results[:pins].count > 0 %>
+        <h4 class="text-decoration-underline">Pins</h4>
+        <%= render partial: 'pins/pin', collection: @results[:pins] %>
+      <% end %>
+      <% if @results[:boards] != nil and @results[:boards].count > 0 %>
+        <h4 class="text-decoration-underline">Boards</h4>
+        <%= render partial: 'boards/board', collection: @results[:boards] %>
+      <% end %>
+      <% if @results[:users] != nil and @results[:users].count > 0 %>
+        <h4 class="text-decoration-underline">Users</h4>
+        <%#= render partial: 'users/user', collection: @results[:users] %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
