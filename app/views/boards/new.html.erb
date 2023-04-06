@@ -1,9 +1,43 @@
-<h1>New board</h1>
+<%= back_button %>
+<%= form_with(model: @board, class: 'container inner-form') do |form| %>
 
-<%= render "form", board: @board %>
+  <h1 class="mb-5 text-center">New Board</h1>
 
-<br>
+  <% if @board.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@board.errors.count, "error") %> prevented this board from being saved:</h2>
 
-<div>
-  <%= link_to "Back to boards", boards_path %>
-</div>
+      <ul>
+        <% @board.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row form-group mb-3">
+    <div class="col-sm-3">
+      <p>Title:</p>
+    </div>
+    <div class="col-sm-8">
+      <%= form.text_field :title, required: true, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row form-group mb-3">
+    <div class="col-sm-3">
+      <p>Description:</p>
+      <small>(optional)</small>
+    </div>
+    <div class="col-sm-8">
+      <%= form.text_area :description, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row form-group mb-5">
+    <div class="col-sm-12 text-center">
+      <%= form.submit value: 'Create This Board', class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+<% end %>

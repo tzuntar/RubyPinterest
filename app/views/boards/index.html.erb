@@ -1,14 +1,29 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Boards</h1>
+<h1 align="center">Boards</h1>
 
-<div id="boards">
+
+
+<div align="center">
+<%= link_to "New board", new_board_path %>
+</div>
+<br>
+
+
+<div class="row row-cols-auto">
   <% @boards.each do |board| %>
-    <%= render board %>
-    <p>
-      <%= link_to "Show this board", board %>
-    </p>
+    <div class="col mb-3 max-height">
+      <a class="neutral-link" href="<%= board_path(board) %>">
+        <div id="<%= dom_id board %>" class="card card-narrow">
+          <% @boards.each do |board| %>
+            <%= render board %>
+            <p>
+              <%= link_to "Show this board", board %>
+            </p>
+          <% end %>
+        </div>
+      </a>
+    </div>
+
   <% end %>
 </div>
-
-<%= link_to "New board", new_board_path %>
