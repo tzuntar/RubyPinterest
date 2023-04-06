@@ -9,6 +9,9 @@
         <li class="nav-item">
           <%= link_to "New pin", new_pin_path, class: "nav-link #{ display_active_class(new_pin_path(@pin)) }" %>
         </li>
+        <li class="nav-item">
+          <%= link_to "Saved Pins", user_saved_pins_path, class: "nav-link #{ display_active_class(user_saved_pins_path) }" %>
+        </li>
       </ul>
       <%= form_tag search_path, method: :get, class: 'form-inline my-2 my-lg-0 text-center' do %>
         <%= text_field_tag 'query', nil, placeholder: 'Type here to search', class: 'form-control' %>

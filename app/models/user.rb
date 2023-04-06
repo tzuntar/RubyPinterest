@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_many :boards, dependent: :destroy
   has_many :pins, through: :boards, dependent: :destroy
 
+  has_many :bookmarks
+  has_many :saved_pins, through: :bookmarks, source: :pin
+
   include PgSearch
   pg_search_scope :kinda_spelled_like,
                   against: :name,

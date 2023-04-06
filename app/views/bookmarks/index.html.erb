@@ -1,0 +1,16 @@
+<% if @pins == nil || @pins.count < 1 %>
+  <p class="text-center">Go save some pins!</p>
+<% else %>
+  <h3 class="text-center mt-2 mb-4">Saved Pins</h3>
+  <div class="row row-cols-auto">
+    <% @pins.each do |pin| %>
+      <div class="col mb-3 max-height">
+        <a class="neutral-link" href="<%= pin_path(pin) %>">
+          <div id="<%= dom_id pin %>" class="card card-narrow">
+            <img class="card-img-top rounded" src="<%= pin.url %>" alt="<%= pin.title %>"/>
+          </div>
+        </a>
+      </div>
+    <% end %>
+  </div>
+<% end %>

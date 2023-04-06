@@ -1,5 +1,6 @@
 class PinsController < ApplicationController
   before_action :set_pin, only: %i[ show edit update destroy ]
+  before_action :set_local_pin, only: %i[ save unsave ]
   before_action :authenticate_user!
   #before_action :authorize_user, only: %i[edit update destroy]
 
@@ -21,6 +22,18 @@ class PinsController < ApplicationController
   # GET /pins/1/edit
   def edit
     @tags_entry = @pin.tags.pluck(:name).join(', ')
+  end
+
+  # POST /pins/1/save
+  def save
+    current_user.bookmarks.create(pin: @pin)
+    redirect_to @pin
+  end
+
+  # POST /pins/1/unsave
+  def unsave
+    current_user.bookmarks.where(pin: @pin).destroy_all
+    redirect_to @pin
   end
 
   # POST /pins or /pins.json
@@ -81,6 +94,10 @@ class PinsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_pin
       @pin = Pin.find(params[:id])
+    end
+
+    def set_local_pin
+      @pin = Pin.find(params[:pin_id])
     end
 
     # Only allow a list of trusted parameters through.

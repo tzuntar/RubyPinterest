@@ -5,6 +5,8 @@ class Pin < ApplicationRecord
   has_and_belongs_to_many :tags, dependent: :destroy
   accepts_nested_attributes_for :tags
   # has_many :comments, dependent: :destroy
+  has_many :bookmarks
+  has_many :users_who_saved, through: :bookmarks, source: :user
 
   scope :filter_by_user, -> (user) { where user_id: user.user_id }
   scope :filter_by_tag, -> (tag) { joins(:tags).where(tags: { name: tag.strip.downcase }) }
