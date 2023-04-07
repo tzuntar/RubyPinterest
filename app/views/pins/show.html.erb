@@ -31,6 +31,7 @@
           <div class="col">
             <small>From <a class="neutral-link" href="<%= @pin.url %>"><%= get_base_url @pin.url %></a></small>
             <h1 class="card-title mt-3"><%= @pin.title %></h1>
+            <p class="card-text mt-3 fst-italic">Posted by <%= link_to @pin.user.name, profile_path(@pin.user) %></p>
             <p class="card-text mt-3"><%= @pin.description %></p>
             <p class="card-text small">
               <% @pin.tags.each do |tag| %>

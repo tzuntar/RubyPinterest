@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     post 'unsave', to: 'pins#unsave'
   end
 
+  get '/profiles/:id' => 'users#show', as: 'profile'
   get '/user/:user_id/boards', to: 'boards#index_by_user'
   get '/user/:user_id/pins', to: 'pins#index_by_user'
   get '/search', to: 'search#show', as: 'search'

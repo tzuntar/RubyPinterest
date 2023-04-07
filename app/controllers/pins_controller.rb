@@ -6,7 +6,8 @@ class PinsController < ApplicationController
 
   # GET /pins or /pins.json
   def index
-    @pins = Pin.all
+    #@pins = Pin.all
+    @pins = current_user.recommended_pins
   end
 
   # GET /pins/1 or /pins/1.json
@@ -27,13 +28,13 @@ class PinsController < ApplicationController
   # POST /pins/1/save
   def save
     current_user.bookmarks.create(pin: @pin)
-    redirect_to @pin
+    redirect_back(fallback_location: @pin)
   end
 
   # POST /pins/1/unsave
   def unsave
     current_user.bookmarks.where(pin: @pin).destroy_all
-    redirect_to @pin
+    redirect_back(fallback_location: @pin)
   end
 
   # POST /pins or /pins.json

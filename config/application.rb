@@ -18,5 +18,10 @@ module RubyPinterest
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Auto-load the libraries
+    config.autoload_paths   << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('lib')
+    Rails.autoloaders.main.ignore('lib/tasks', 'lib/assets')
   end
 end
