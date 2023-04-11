@@ -6,8 +6,9 @@ class PinsController < ApplicationController
 
   # GET /pins or /pins.json
   def index
-    #@pins = Pin.all
-    @pins = current_user.recommended_pins
+    #@pins = current_user.recommended_pins
+    user_feed = current_user.feed
+    @pins = (if user_feed != nil then user_feed.pins else current_user.recommended_pins end)
   end
 
   # GET /pins/1 or /pins/1.json
