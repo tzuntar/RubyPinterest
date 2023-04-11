@@ -12,7 +12,7 @@ class PinsController < ApplicationController
 
   # GET /pins/1 or /pins/1.json
   def show
-    @similar = Pin.similar_to_this @pin
+    @similar = @pin.similar_pins
   end
 
   # GET /pins/new

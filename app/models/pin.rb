@@ -10,6 +10,8 @@ class Pin < ApplicationRecord
 
   scope :filter_by_user, -> (user) { where user_id: user.id }
   scope :filter_by_tag, -> (tag) { joins(:tags).where(tags: { name: tag.strip.downcase }) }
+
+  # very basic, use 'similar_pins' instead
   scope :similar_to_this, -> (pin) {
     where("UPPER(title) LIKE UPPER(:query) OR UPPER(description) LIKE UPPER(:query)", query: "%#{pin.title}%")
       .where("UPPER(title) LIKE UPPER(:query) OR UPPER(description) LIKE UPPER(:query)", query: "%#{pin.description}%")
@@ -18,6 +20,23 @@ class Pin < ApplicationRecord
       .where.not(description: [nil, ''])
       .limit(20)
   }
+
+  def similar_pins
+    similarity_matrix = Pin.similarity_matrix
+    recommended_pins = Hash.new(0)
+
+    Pin.all.each do |pin|
+      similarity_matrix[pin.id].each do |other_pin_id, similarity|
+        next if pin.id == id
+        recommended_pins[other_pin_id] += similarity
+      end
+    end
+
+    sorted = recommended_pins
+               .sort_by { |id, score| -score }
+               .map { |id, _| id }
+    Pin.find(sorted)  # ToDo: .limit(20)
+  end
 
   def vector
     title_weight = 0.3
