@@ -21,10 +21,22 @@
                 <li><%= link_to 'Delete', pin_path(@pin), method: :delete, class: 'dropdown-item link-danger', data: { turbo_method: :delete } %></li>
               </ul>
             </div>
+
+            <%= form_with(model: @pin) do |f| %>
+
+              <%= f.select :board_id, current_user.boards.map { |board| [board.title, board.id] } %>
+              <%= f.submit value: 'Save To Board', class: 'btn btn-primary' %>
+
+            <% end %>
+
+
           </div>
+
           <div class="col-sm-2">
             <%= save_button @pin %>
           </div>
+
+
         </div>
 
         <div class="row">
