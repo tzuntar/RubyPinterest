@@ -1,7 +1,7 @@
 class Pin < ApplicationRecord
   #validates_presence_of :title
   belongs_to :user
-  belongs_to :board, optional: true
+  has_and_belongs_to_many :boards, dependent: :destroy
   has_and_belongs_to_many :tags, dependent: :destroy
   accepts_nested_attributes_for :tags
   # has_many :comments, dependent: :destroy
