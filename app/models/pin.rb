@@ -7,6 +7,7 @@ class Pin < ApplicationRecord
   # has_many :comments, dependent: :destroy
   has_many :bookmarks
   has_many :users_who_saved, through: :bookmarks, source: :user
+  acts_as_votable
 
   scope :filter_by_user, -> (user) { where user_id: user.id }
   scope :filter_by_tag, -> (tag) { joins(:tags).where(tags: { name: tag.strip.downcase }) }

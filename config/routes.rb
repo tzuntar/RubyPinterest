@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   resources :pins do
     post 'save', to: 'pins#save'
     post 'unsave', to: 'pins#unsave'
+    member do
+      put "like", to: "pins#like"
+      put "dislike", to: "pins#dislike"
+    end
   end
 
   get '/profiles/:id' => 'users#show', as: 'profile'

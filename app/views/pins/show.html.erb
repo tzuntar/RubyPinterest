@@ -52,6 +52,17 @@
             </p>
           </div>
         </div>
+        <div>
+          <%= link_to like_pin_path(@pin), method: :put, class: 'btn btn-default btn-xs', data: { turbo_method: :put } do %>
+            <span class="fa fa-chevron-up"></span>
+            <%= @pin.get_upvotes.size %>
+          <% end %>
+
+          <%= link_to dislike_pin_path(@pin), method: :put, class: 'btn btn-default btn-xs', data: { turbo_method: :put } do %>
+            <span class="fa fa-chevron-down"></span>
+            <%= @pin.get_downvotes.size %>
+          <% end %>
+        </div>
         <div class="row">
           <h4 class="mt-4">Comments</h4>
         </div>

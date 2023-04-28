@@ -2,12 +2,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable
+        # omogoci v produkciji :confirmable
   has_many :boards, dependent: :destroy
   has_many :pins, through: :boards, dependent: :destroy
   has_many :bookmarks
   has_many :saved_pins, through: :bookmarks, source: :pin
   has_one :feed, dependent: :destroy
+  acts_as_voter
 
   def recommended_pins
     sorted = calculate_recommended_pins
