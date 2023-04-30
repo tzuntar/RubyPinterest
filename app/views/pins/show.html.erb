@@ -79,7 +79,7 @@
     <% @similar.each do |pin| %>
       <div class="col mb-3 max-height">
         <a class="neutral-link" href="<%= pin_path(pin) %>">
-          <div id="<%= dom_id pin %>" class="card card-narrow">
+          <div id="<%= dom_id pin %>" class="card card-narrow pin-card-medium">
             <img class="card-img-top rounded" src="<%= pin.url %>" alt="<%= pin.title %>"/>
           </div>
         </a>

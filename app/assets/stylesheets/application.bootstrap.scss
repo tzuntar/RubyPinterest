@@ -30,3 +30,14 @@ h1, h2, h3, h4, h5 {
 .max-height {
   height: 100%;
 }
+
+.pin-card-medium,
+.pin-card-medium img {
+  width: 18rem !important;
+  height: 18rem !important;
+}
+
+.pin-card-medium img {
+  object-fit: cover;
+}
+

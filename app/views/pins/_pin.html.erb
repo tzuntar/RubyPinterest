@@ -1,10 +1,7 @@
-<a class="neutral-link" href="<%= pin_path(pin) %>">
-  <div id="<%= dom_id pin %>" class="card card-narrow">
-    <img class="card-img-top" src="<%= pin.url %>" alt="<%= pin.title %>"/>
-    <div class="card-body">
-      <h5 class="card-title"><%= pin.title %></h5>
-      <p class="card-text"><%= pin.description %></p>
-      <%= save_button pin %>
+<div class="col mb-3 max-height">
+  <a class="neutral-link" href="<%= pin_path(pin) %>">
+    <div id="<%= dom_id pin %>" class="card card-narrow pin-card-medium">
+      <img class="card-img-top rounded" src="<%= pin.url %>" alt="<%= pin.title %>"/>
     </div>
-  </div>
-</a>
+  </a>
+</div>
