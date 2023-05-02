@@ -21,23 +21,23 @@
                 <li><%= link_to 'Delete', pin_path(@pin), method: :delete, class: 'dropdown-item link-danger', data: { turbo_method: :delete } %></li>
               </ul>
             </div>
-
-            <%= form_tag pin_save_to_board_path(@pin), method: :post do %>
-
-              <%= select_tag "board_id", options_for_select(current_user.boards.map { |board| [board.title, board.id] }) %>
-              <%= submit_tag 'Save To Board', class: 'btn btn-primary' %>
-
-            <% end %>
-
-
           </div>
-
           <div class="col-sm-2">
             <%= save_button @pin %>
           </div>
-
-
         </div>
+
+        <%= form_with(url: pin_save_to_board_path(@pin), local: true, method: :post) do |f| %>
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <%# tisti '{}' je nujen %>
+              <%= f.select :board_id, current_user.boards.map { |board| [board.title, board.id] }, {}, { 'class': 'form-select d-inline' } %>
+            </div>
+            <div class="col-sm-4">
+              <%= f.submit value: 'Save To Board', class: 'btn btn-outline-secondary' %>
+            </div>
+          </div>
+        <% end %>
 
         <div class="row">
           <div class="col">

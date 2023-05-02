@@ -1,5 +1,5 @@
 class PinsController < ApplicationController
-  before_action :set_pin, only: %i[ show edit update destroy save_to_board ]
+  before_action :set_pin, only: %i[ show edit update destroy ]
   before_action :set_local_pin, only: %i[ save unsave ]
   before_action :authenticate_user!
   #before_action :authorize_user, only: %i[edit update destroy]
@@ -40,11 +40,14 @@ class PinsController < ApplicationController
   end
 
   def save_to_board
-    board = Board.find(params[:board_id])
-    raise pin_params
-    board.pins.push(@pin)
-    board.pins.save
-    redirect_back(fallback_location: @pin)
+    @pin = Pin.find(params[:pin_id])
+    @board = current_user.boards.find(params[:board_id])
+    if @board.pins.push(@pin)
+      flash[:success] = 'Pin saved to board successfully'
+    else
+      flash[:error] = 'Failed to save pin to board'
+    end
+    redirect_to @pin
   end
 
   # POST /pins or /pins.json

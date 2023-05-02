@@ -80,8 +80,8 @@ class Pin < ApplicationRecord
     similarity_matrix
   end
 
-  include PgSearch
+  include PgSearch::Model
   pg_search_scope :kinda_spelled_like,
-                  against: :title,
+                  against: [:title, :description],
                   using: :trigram
 end

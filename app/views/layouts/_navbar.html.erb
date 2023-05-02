@@ -17,7 +17,7 @@
         </li>
       </ul>
       <%= form_tag search_path, method: :get, class: 'form-inline my-2 my-lg-0 text-center' do %>
-        <%= text_field_tag 'query', nil, placeholder: 'Type here to search', class: 'form-control' %>
+        <%= text_field_tag 'query', nil, placeholder: 'Type here to search', class: 'form-control', id: 'search-box' %>
       <% end %>
       <ul class="navbar-nav">
         <%= display_right_navbar %>
