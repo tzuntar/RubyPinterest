@@ -5,7 +5,7 @@
 
 
 <div align="center">
-<%= link_to "New board", new_board_path %>
+<%= link_to "New board", new_board_path, class: 'btn btn-primary' %>
 </div>
 <br>
 
@@ -18,7 +18,7 @@
           <% @boards.each do |board| %>
             <%= render board %>
             <p>
-              <%= link_to "Show this board", board %>
+              <%= link_to "Show this board", board, class: 'btn btn-primary' %>
             </p>
           <% end %>
         </div>
@@ -27,3 +27,5 @@
 
   <% end %>
 </div>
+
+

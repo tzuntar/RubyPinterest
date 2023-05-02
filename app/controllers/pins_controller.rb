@@ -1,5 +1,5 @@
 class PinsController < ApplicationController
-  before_action :set_pin, only: %i[ show edit update destroy ]
+  before_action :set_pin, only: %i[ show edit update destroy save_to_board ]
   before_action :set_local_pin, only: %i[ save unsave ]
   before_action :authenticate_user!
   #before_action :authorize_user, only: %i[edit update destroy]
@@ -36,6 +36,14 @@ class PinsController < ApplicationController
   # POST /pins/1/unsave
   def unsave
     current_user.bookmarks.where(pin: @pin).destroy_all
+    redirect_back(fallback_location: @pin)
+  end
+
+  def save_to_board
+    board = Board.find(params[:board_id])
+    raise pin_params
+    board.pins.push(@pin)
+    board.pins.save
     redirect_back(fallback_location: @pin)
   end
 
@@ -117,6 +125,6 @@ class PinsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pin_params
-      params.require(:pin).permit(:title, :url, :description, :tags_entry)
+      params.require(:pin).permit(:title, :url, :description, :tags_entry, :board_id)
     end
 end

@@ -1,12 +1,33 @@
 <p style="color: green"><%= notice %></p>
-
+<div>
 <%= render @board %>
 
-<div>
-  <%= link_to "Edit this board", edit_board_path(@board) %> |
-  <%= link_to "Back to boards", boards_path %>
 
-  <%= button_to "Destroy this board", @board, method: :delete %>
+
+
+
+
+          <div class="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <h7>Manage</h7>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-start">
+              <li><%= link_to 'Edit', edit_board_path(@board), class: 'dropdown-item' %></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li> <%= link_to "Back to boards", boards_path, class: 'dropdown-item'  %></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><%= link_to 'Delete', board_path(@board), method: :delete, class: 'dropdown-item link-danger', data: { turbo_method: :delete } %></li>
+
+            </ul>
+          </div>
+
+
+
+
 </div>
 <div class="row row-cols-auto">
   <% @board.pins.each do |pin| %>
@@ -19,3 +40,4 @@
     </div>
   <% end %>
 </div>
+
