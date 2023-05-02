@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
         # omogoci v produkciji :confirmable
   has_many :boards, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :pins, through: :boards, dependent: :destroy
   has_many :bookmarks
   has_many :saved_pins, through: :bookmarks, source: :pin

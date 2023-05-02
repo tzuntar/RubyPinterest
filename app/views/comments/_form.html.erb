@@ -1,0 +1,14 @@
+<%= form_with(model: [@pin, comment]) do |form| %>
+
+
+  <div>
+    <%= form.label :Comment, style: "display: block" %>
+    <%= form.text_field :body,  class: 'form-control' %>
+  </div>
+<br>
+  <div>
+    <%= form.submit value: 'Create', class: 'btn btn-primary' %>
+  </div>
+  <br>
+<% end %>
+

@@ -14,6 +14,7 @@ class PinsController < ApplicationController
   # GET /pins/1 or /pins/1.json
   def show
     @similar = @pin.similar_pins
+    @comments = @pin.comments
   end
 
   # GET /pins/new

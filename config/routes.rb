@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :boards
   resources :pins do
+    resources :comments, only: [:update, :destroy, :create]
     post 'save', to: 'pins#save'
     post 'unsave', to: 'pins#unsave'
     member do

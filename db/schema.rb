@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_28_071713) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_02_091319) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_071713) do
     t.datetime "updated_at", null: false
     t.index ["pin_id"], name: "index_bookmarks_on_pin_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.bigint "pin_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pin_id"], name: "index_comments_on_pin_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "feeds", force: :cascade do |t|
@@ -134,6 +144,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_071713) do
   add_foreign_key "boards_pins", "pins"
   add_foreign_key "bookmarks", "pins"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "comments", "pins"
+  add_foreign_key "comments", "users"
   add_foreign_key "feeds", "users"
   add_foreign_key "pins", "users"
   add_foreign_key "pins_tags", "pins"
