@@ -13,6 +13,9 @@
           <%= link_to "New Board", new_board_path, class: "nav-link #{ display_active_class(new_board_path(@board)) }" %>
         </li>
         <li class="nav-item">
+          <%= link_to "Boards", boards_path, class: "nav-link #{ display_active_class(boards_path) }" %>
+        </li>
+        <li class="nav-item">
           <%= link_to "Saved Pins", user_saved_pins_path, class: "nav-link #{ display_active_class(user_saved_pins_path) }" %>
         </li>
       </ul>

@@ -15,13 +15,13 @@
     <div class="col mb-3 max-height">
       <a class="neutral-link" href="<%= board_path(board) %>">
         <div id="<%= dom_id board %>" class="card card-narrow">
+          <% if board.pins.first.present? %>
+            <img class="card-img-top rounded" src="<%= board.pins.first.url %>" alt="<%= board.pins.first.title %>"/>
+          <% end %>
 
-            <%= render board %>
-            <p>
+          <h4><%= board.title %></h4>
 
-              <%= link_to "Show this board", board, class: 'btn btn-primary' %>
-            </p>
-
+          <p><%= board.description %></p>
         </div>
       </a>
     </div>
